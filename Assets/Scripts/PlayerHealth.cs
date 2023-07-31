@@ -8,8 +8,8 @@ public class PlayerHealth : MonoBehaviour
     public Vector3 spawnPoint;  
     UnityEngine.AI.NavMeshAgent agent;
     Rigidbody rigidBody;
-    PlayerMovement playerMov;
-    public GameObject pModel; 
+    PlayerMovement playerMov; 
+    public GameObject deathScreen;
 
     float knockback = 20f;
 
@@ -20,6 +20,8 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        deathScreen.SetActive(false);
+
         //set spawnpoint
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         spawnPoint = transform.position;
@@ -67,11 +69,7 @@ public class PlayerHealth : MonoBehaviour
             //Check to see if health dropps to 0 (or lower)
             if (health <= 0)
             {
-                //Health dropped to 0, respawn the character
-                Respawn();
-
-                //Set player health back to maximum
-                health = maxHealth;
+                deathScreen.SetActive(true);
             }
         }
     }
@@ -80,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
     {
         //Send player to spawn point
         transform.position = spawnPoint;
+        health = maxHealth;
 
         //End movement
         agent.ResetPath();
