@@ -15,12 +15,18 @@ public class PlayerMovement : MonoBehaviour
     float jumpForce = 900;      //How much force to use when the player jumps
     bool isJumping = false;     //True/false flag indicating if the player is already jumping
     public float controlLockTimer = 0f;
+    
+    public GameObject pModel; 
+
+    Animator rat;
+
     // Start is called before the first frame update
     void Start()
     {
         //Fetch the Rigidbody from the GameObject with this script attached
         rigidBody = GetComponent<Rigidbody>();
         distToGround = GetComponent<Collider>().bounds.extents.y;
+        rat = pModel.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,26 +38,47 @@ public class PlayerMovement : MonoBehaviour
         {
             controlLockTimer -= Time.deltaTime;
         }
+        if (IsGrounded())
+        {
+            rigidBody.drag = 2;
+        }
+        else
+        {
+            rigidBody.drag = 0.5f;
+            rat.ResetTrigger("stop");
+            rat.ResetTrigger("turn");
+            rat.ResetTrigger("runStart");
+            rat.ResetTrigger("runBack");
+            rat.SetTrigger("jump");
+        }
         if (Input.GetKey(KeyCode.W))
         {
             //W - move forward along the player's forward direction.
             //Always multiply by deltaTime when moving as Update() runs 30+ frames per sec
             rigidBody.AddForce(transform.forward * moveSpeed, ForceMode.Acceleration);
+            rat.ResetTrigger("stop");
+            rat.SetTrigger("runStart");
         }   
         if (Input.GetKey(KeyCode.A))
         {
             //A - turn left
             transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
+            rat.ResetTrigger("stop");
+            rat.SetTrigger("turn");
         }
         if (Input.GetKey(KeyCode.S))
         {
             //S - move backwards along the player's negative forward direction.
             rigidBody.AddForce(transform.forward * -moveSpeed, ForceMode.Acceleration);
+            rat.ResetTrigger("stop");
+            rat.SetTrigger("runBack");
         }
         if (Input.GetKey(KeyCode.D))
         {
             //D - turn right by rotating the player along the Y axis in the positive direction
             transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
+            rat.ResetTrigger("stop");
+            rat.SetTrigger("turn");
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -72,19 +99,15 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.velocity = rigidBody.velocity.normalized * speedCap;
         }
 
-        if (IsGrounded())
+        if (IsGrounded() && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
         {
-            rigidBody.drag = 2;
-        }
-        else
-        {
-            rigidBody.drag = 0.5f;
+            rat.SetTrigger("stop");
         }
     }
 
     public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.5f);
     }
     private void OnCollisionEnter(Collision collision)
     {

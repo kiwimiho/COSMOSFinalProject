@@ -8,7 +8,8 @@ public class PlayerHealth : MonoBehaviour
     public Vector3 spawnPoint;  
     UnityEngine.AI.NavMeshAgent agent;
     Rigidbody rigidBody;
-    PlayerMovement playerMov; 
+    PlayerMovement playerMov;
+    public GameObject pModel; 
 
     float knockback = 20f;
 
