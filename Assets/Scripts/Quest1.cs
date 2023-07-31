@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Quest1 : MonoBehaviour
 {
     //Making these public so we can watch them change in the designer
     // public GameObject wall;                                 //Wall that we want to lower when the quest is completed
-    // public Vector3 hiddenPosition;                          //Calculated hidden position of the wall (not visible)
-    public bool haveItem = false;                           //Flag indicating if the red block has been picked up                       //Flag indicating if the green block has been picked up
+    // public Vector3 hiddenPosition;                         //Calculated hidden position of the wall (not visible)
+    public TMP_Text dialogueText;
+    public GameObject dialoguePanel;
+
+    public bool haveItem = false;                           //picked up?                     
     public ExitQuestState state = ExitQuestState.None;      //Current state
     // public bool isNetVisible = false;
 
@@ -26,6 +30,8 @@ public class Quest1 : MonoBehaviour
         //Set current state to None (not assigned)
         state = ExitQuestState.None;
         haveItem = false;
+
+        dialoguePanel.SetActive(false);
 
         //Get the wall game object in the scene
         // wall = GameObject.Find("rockWall");
@@ -69,14 +75,18 @@ public class Quest1 : MonoBehaviour
     //Currently in the None state, start the quest
     public void NoneExitQuest()
     {
-        Debug.Log("help me get my artifact over there.");
+        dialoguePanel.SetActive(true);
+        dialogueText.text = "help me get my artifact over there.";
+        // Debug.Log("help me get my artifact over there.");
         state = ExitQuestState.During;
     }
 
     //Quest is done, nothing more to do
     public void CompletedExitQuest()
     {
-        Debug.Log("You already brought me my artifact you should go help the others");
+        dialoguePanel.SetActive(true);
+        dialogueText.text = "You already brought me my artifact you should go help the others";
+        // Debug.Log("You already brought me my artifact you should go help the others");
     }
 
     //Looking for the red block state
@@ -86,13 +96,17 @@ public class Quest1 : MonoBehaviour
         if (haveItem)
         {
             //Yes, move to next part of quest
-            Debug.Log("Thanks for bringing me my artifact, you should go help the others now");
+            dialoguePanel.SetActive(true);
+            dialogueText.text = "Thanks for bringing me my artifact, you should go help the others now";
+            //Debug.Log("Thanks for bringing me my artifact, you should go help the others now");
             state = ExitQuestState.Completed;
         }
         else
         {
             //Nope, remind player what's going on
-            Debug.Log("My artifact is over there, please bring it to me");
+            dialoguePanel.SetActive(true);
+            dialogueText.text = "My artifact is over there, please bring it to me";
+            //Debug.Log("My artifact is over there, please bring it to me");
         }
     }
 
@@ -107,7 +121,9 @@ public class Quest1 : MonoBehaviour
             if (other.name == "QuestItem1")
             {
                 //Yes, pick up block
-                Debug.Log("You got a artifact");
+                dialoguePanel.SetActive(true);
+                dialogueText.text = "You got a artifact";
+                //Debug.Log("You got a artifact");
 
                 //Pick up green block
                 haveItem = true;
@@ -118,7 +134,9 @@ public class Quest1 : MonoBehaviour
             else
             {
                 //Nope, remind player (we could do nothing here also)
-                Debug.Log("We're looking for an artifact");
+                dialoguePanel.SetActive(true);
+                dialogueText.text = "We're looking for an artifact";
+                //Debug.Log("We're looking for an artifact");
             }
         }
     }
