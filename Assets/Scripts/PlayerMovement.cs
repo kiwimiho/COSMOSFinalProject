@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     float rotationSpeed = 100;   //How fast the player turns left/right
     float distToGround;
     float speedCap = 30;
-    float jumpForce = 600;      //How much force to use when the player jumps
+    float jumpForce = 500;      //How much force to use when the player jumps
     bool isJumping = false;     //True/false flag indicating if the player is already jumping
     // Start is called before the first frame update
     void Start()
@@ -65,6 +65,15 @@ public class PlayerMovement : MonoBehaviour
         if (rigidBody.velocity.magnitude > speedCap) //make sure no movement is too fast
         {
             rigidBody.velocity = rigidBody.velocity.normalized * speedCap;
+        }
+
+        if (IsGrounded())
+        {
+            rigidBody.drag = 3;
+        }
+        else
+        {
+            rigidBody.drag = 0.2f;
         }
     }
 
