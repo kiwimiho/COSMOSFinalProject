@@ -7,9 +7,10 @@ public class PlayerHealth : MonoBehaviour
     //Components attached to gameobject we want to use a lot      
     public Vector3 spawnPoint;  
     UnityEngine.AI.NavMeshAgent agent;
-    Rigidbody rigidBody; 
+    Rigidbody rigidBody;
+    PlayerMovement playerMov; 
 
-    float knockback = 700f;
+    float knockback = 20f;
 
     //Making these public so we can watch them change in the designer
     public static int maxHealth = 10;                                       //Initial health of the player
@@ -22,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         spawnPoint = transform.position;
         rigidBody = GetComponent<Rigidbody>();
+        playerMov = GetComponent<PlayerMovement>();
 
         //Fetch the PlayerClickMove component from the GameObject
 
@@ -39,10 +41,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && playerMov.controlLockTimer <= 0)
         {
             Destroy(other.gameObject);
-            rigidBody.AddForce(transform.up * knockback);
+            rigidBody.AddForce(transform.up * knockback, ForceMode.Impulse);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -57,7 +59,9 @@ public class PlayerHealth : MonoBehaviour
 
             //Subtract health
             health -= 1;
-            rigidBody.AddForce(transform.forward * -knockback);
+            rigidBody.AddForce(transform.forward * -knockback, ForceMode.Impulse);
+            rigidBody.AddForce(transform.up * (knockback/2), ForceMode.Impulse);
+            playerMov.controlLockTimer = 2 * Time.deltaTime;
 
             //Check to see if health dropps to 0 (or lower)
             if (health <= 0)

@@ -9,11 +9,12 @@ public class PlayerMovement : MonoBehaviour
 
     //Making these public so we can watch them change in the designer
     float moveSpeed = 5;        //How fast the player moves
-    float rotationSpeed = 100;   //How fast the player turns left/right
+    float rotationSpeed = 150;   //How fast the player turns left/right
     float distToGround;
-    float speedCap = 30;
-    float jumpForce = 500;      //How much force to use when the player jumps
+    float speedCap = 40;
+    float jumpForce = 900;      //How much force to use when the player jumps
     bool isJumping = false;     //True/false flag indicating if the player is already jumping
+    public float controlLockTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     {
         //Check for each of the movement keys to see if the player is currently pressing them.
         //Using game standard WASD + space. Could be changed to use arrow keys (or some other combo)
+        if (controlLockTimer > 0)
+        {
+            controlLockTimer -= Time.deltaTime;
+        }
         if (Input.GetKey(KeyCode.W))
         {
             //W - move forward along the player's forward direction.
@@ -69,11 +74,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded())
         {
-            rigidBody.drag = 3;
+            rigidBody.drag = 2;
         }
         else
         {
-            rigidBody.drag = 0.2f;
+            rigidBody.drag = 0.5f;
         }
     }
 
