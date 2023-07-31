@@ -23,9 +23,10 @@ public class EnemyAttack : State
         {
             agent.destination = player.transform.position;
         }
-        else if (enemy == null)
+        else if (player == null)
         {
-            sc.RemoveTop();
+            // sc.RemoveTop();
+            sc.AddNewState(new EnemyPatrol());
         }
 
     }
