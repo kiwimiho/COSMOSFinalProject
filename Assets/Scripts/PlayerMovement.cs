@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (IsGrounded())
         {
-            rigidBody.drag = 2;
+            rigidBody.drag = 1;
         }
         else
         {
