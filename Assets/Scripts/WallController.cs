@@ -6,14 +6,14 @@ public class WallController : MonoBehaviour
 {
     public GameObject wall;              
     public Vector3 hiddenPosition;
-    public float wallSpeed = 1.0f; 
+    public float wallSpeed = 5.0f; 
     // Start is called before the first frame update
     void Start()
     {
         wall = GameObject.Find("Wall");
 
-        //Calculate the wall's hidden position (current position, but subtract 10.5 from the Y axis, which is below ground)
-        hiddenPosition = wall.transform.position - new Vector3(0, 10.5f, 0);
+        //Calculate the wall's hidden position (current position, but subtract from the Y axis, which is below ground)
+        hiddenPosition = wall.transform.position - new Vector3(0, 50f, 0);
     }
 
     // Update is called once per frame

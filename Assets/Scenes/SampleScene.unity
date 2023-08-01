@@ -2458,6 +2458,7 @@ GameObject:
   - component: {fileID: 609088164}
   - component: {fileID: 609088163}
   - component: {fileID: 609088162}
+  - component: {fileID: 609088165}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2530,6 +2531,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 88932992}
+--- !u!114 &609088165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609088159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d6a6170c0444763bd262af0452ca3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wall: {fileID: 0}
+  hiddenPosition: {x: 0, y: 0, z: 0}
+  wallSpeed: 5
 --- !u!1 &633196894
 GameObject:
   m_ObjectHideFlags: 0
