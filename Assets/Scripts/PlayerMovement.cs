@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rigidBody.drag = 0.5f;
+            rigidBody.drag = 0.6f;
             rat.ResetTrigger("stop");
             rat.ResetTrigger("turn");
             rat.ResetTrigger("runStart");
