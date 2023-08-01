@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
             else if (!hasStomped && !IsGrounded()) //double jump
             {
                 hasStomped = true;
-                rigidBody.AddForce(transform.up * (jumpForce*1/50), ForceMode.Impulse);
+                rigidBody.AddForce(transform.up * (jumpForce*1/60) - rigidBody.velocity, ForceMode.VelocityChange);
             }
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
