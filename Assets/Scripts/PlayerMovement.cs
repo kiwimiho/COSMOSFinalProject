@@ -8,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rigidBody; //Rigidbody component used for jumping (it's physics!!!)
 
     //Making these public so we can watch them change in the designer
-    float moveSpeed = 5;        //How fast the player moves
+    float moveSpeed = 50;        //How fast the player moves
     float rotationSpeed = 150;   //How fast the player turns left/right
     float distToGround;
-    float speedCap = 40;
+    float speedCap = 100;
     float jumpForce = 900;      //How much force to use when the player jumps
     bool isJumping = false;     //True/false flag indicating if the player is already jumping
     public float controlLockTimer = 0f;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Check for each of the movement keys to see if the player is currently pressing them.
         //Using game standard WASD + space. Could be changed to use arrow keys (or some other combo)
@@ -81,6 +81,19 @@ public class PlayerMovement : MonoBehaviour
             rat.ResetTrigger("stop");
             rat.SetTrigger("turn");
         }
+        if (rigidBody.velocity.magnitude > speedCap) //make sure no movement is too fast
+        {
+            rigidBody.velocity = rigidBody.velocity.normalized * speedCap;
+        }
+
+        if (IsGrounded() && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+        {
+            rat.SetTrigger("stop");
+        }
+    }
+
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //It can be helpful when testing to print out debug statements to the Console window.
@@ -94,15 +107,6 @@ public class PlayerMovement : MonoBehaviour
                 //Apply a force to this Rigidbody in direction of this GameObjects up axis
                 rigidBody.AddForce(transform.up * jumpForce);
             }
-        }
-        if (rigidBody.velocity.magnitude > speedCap) //make sure no movement is too fast
-        {
-            rigidBody.velocity = rigidBody.velocity.normalized * speedCap;
-        }
-
-        if (IsGrounded() && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-        {
-            rat.SetTrigger("stop");
         }
     }
 
