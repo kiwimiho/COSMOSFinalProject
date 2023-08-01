@@ -5,8 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     StateController controller;
-    public GameObject[] waypoints = new GameObject[2];
-    public float viewRange = 30;
+    public static int numWaypoints = 2;
+    public GameObject[] waypoints = new GameObject[numWaypoints];
+    public float viewRange = 20;
 
     // Start is called before the first frame update
     void Start()

@@ -15,6 +15,7 @@ public class EnemyPatrol : State
     {
         enemy = sc.gameObject.GetComponent<Enemy>();
         agent = enemy.GetComponent<NavMeshAgent>();
+        agent.speed = 3;
 
         //Find nearest waypoint - walk to it
         GameObject waypoint = sc.FindClosestTarget("Waypoint", Mathf.Infinity);

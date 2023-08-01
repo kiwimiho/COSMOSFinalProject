@@ -6,7 +6,6 @@ public class PlayerHealth : MonoBehaviour
 {
     //Components attached to gameobject we want to use a lot      
     public Vector3 spawnPoint;  
-    UnityEngine.AI.NavMeshAgent agent;
     Rigidbody rigidBody;
     PlayerMovement playerMov; 
     public GameObject deathScreen;
@@ -26,7 +25,6 @@ public class PlayerHealth : MonoBehaviour
         deathScreen.SetActive(false);
 
         //set spawnpoint
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         spawnPoint = transform.position;
         rigidBody = GetComponent<Rigidbody>();
         playerMov = GetComponent<PlayerMovement>();
@@ -84,8 +82,6 @@ public class PlayerHealth : MonoBehaviour
         //Send player to spawn point
         transform.position = spawnPoint;
         health = maxHealth;
-
-        //End movement
-        agent.ResetPath();
+        deathScreen.SetActive(false);
     }
 }

@@ -13,6 +13,7 @@ public class EnemyAttack : State
     {
         enemy = sc.gameObject.GetComponent<Enemy>();
         agent = enemy.GetComponent<NavMeshAgent>();
+        agent.speed = 10;
     }
 
     public override void OnUpdate()
