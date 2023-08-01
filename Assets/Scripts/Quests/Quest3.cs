@@ -10,6 +10,7 @@ public class Quest3 : MonoBehaviour
     // public Vector3 hiddenPosition;                         //Calculated hidden position of the wall (not visible)
     public TMP_Text dialogueText;
     public GameObject dialoguePanel;
+    public TMP_Text nameText;
 
     public bool haveItem = false;                           //picked up?                     
     public ExitQuestState state = ExitQuestState.None;      //Current state
@@ -77,6 +78,7 @@ public class Quest3 : MonoBehaviour
     public void NoneExitQuest()
     {
         dialoguePanel.SetActive(true);
+        nameText.text = "Sparren";
         dialogueText.text = "You! Please retrieve my artifact. Colo...He was part of our village once, but felt neglected after being born with no magic, unlike the rest of us. He must be exacting revenge!";
         // Debug.Log("help me get my artifact over there.");
         state = ExitQuestState.During;
@@ -88,11 +90,13 @@ public class Quest3 : MonoBehaviour
         if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
         {
             dialoguePanel.SetActive(true);
+            nameText.text = "Sparren";
             dialogueText.text = "Thanks for returning all our artifacts! We have brought down the wall for you.";
         }
         else
         {
             dialoguePanel.SetActive(true);
+            nameText.text = "Sparren";
             dialogueText.text = "You already brought me my artifact, fellow. Please go help the others.";
             // Debug.Log("You already brought me my artifact you should go help the others");
         }
@@ -108,11 +112,13 @@ public class Quest3 : MonoBehaviour
             if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
             {
                 dialoguePanel.SetActive(true);
+                nameText.text = "Sparren";
                 dialogueText.text = "Thanks for bringing me my artifact! we have lowered the wall for you. Defeat Colo!";
             }
             else
             {
                 dialoguePanel.SetActive(true);
+                nameText.text = "Sparren";
                 dialogueText.text = "Thank you for bringing me my artifact. You should go help the others now.";
                 //Debug.Log("Thanks for bringing me my artifact, you should go help the others now");
                 state = ExitQuestState.Completed;
@@ -122,6 +128,7 @@ public class Quest3 : MonoBehaviour
         {
             //Nope, remind player what's going on
             dialoguePanel.SetActive(true);
+            nameText.text = "Sparren";
             dialogueText.text = "My artifact can be found on the dirt path. Please retrieve it for me.";
             //Debug.Log("My artifact is over there, please bring it to me");
         }
@@ -139,6 +146,7 @@ public class Quest3 : MonoBehaviour
             {
                 //Yes, pick up block
                 dialoguePanel.SetActive(true);
+                nameText.text = "";
                 dialogueText.text = "You got Sparren's artifact!";
                 //Debug.Log("You got a artifact");
 
@@ -152,6 +160,7 @@ public class Quest3 : MonoBehaviour
             {
                 //Nope, remind player (we could do nothing here also)
                 dialoguePanel.SetActive(true);
+                nameText.text = "";
                 dialogueText.text = "We're looking for a light brown artifact.";
                 //Debug.Log("We're looking for an artifact");
             }
