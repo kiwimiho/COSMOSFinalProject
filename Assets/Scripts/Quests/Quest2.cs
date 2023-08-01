@@ -15,6 +15,7 @@ public class Quest2 : MonoBehaviour
     public ExitQuestState state = ExitQuestState.None;      //Current state
     // public bool isNetVisible = false;
 
+    public static bool completed2;
     //Enumeration with all of the states being used for the exit quest
     public enum ExitQuestState
     {
@@ -84,9 +85,17 @@ public class Quest2 : MonoBehaviour
     //Quest is done, nothing more to do
     public void CompletedExitQuest()
     {
-        dialoguePanel.SetActive(true);
-        dialogueText.text = "You already brought me my artifact you should go help the others";
-        // Debug.Log("You already brought me my artifact you should go help the others");
+        if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
+        {
+            dialoguePanel.SetActive(true);
+            dialogueText.text = "Thanks for returning all our artifacts! We have brought down the wall for you.";
+        }
+        else
+        {
+            dialoguePanel.SetActive(true);
+            dialogueText.text = "You already brought me my artifact you should go help the others";
+            // Debug.Log("You already brought me my artifact you should go help the others");
+        }
     }
 
     //Looking for the red block state
@@ -95,11 +104,19 @@ public class Quest2 : MonoBehaviour
         //Does the player have the red block?
         if (haveItem)
         {
-            //Yes, move to next part of quest
-            dialoguePanel.SetActive(true);
-            dialogueText.text = "Thanks for bringing me my artifact, you should go help the others now";
-            //Debug.Log("Thanks for bringing me my artifact, you should go help the others now");
-            state = ExitQuestState.Completed;
+            completed2 = true;
+            if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
+            {
+                dialoguePanel.SetActive(true);
+                dialogueText.text = "Thanks for bringing me my artifact, we have lowered the wall for you.";
+            }
+            else
+            {
+                dialoguePanel.SetActive(true);
+                dialogueText.text = "Thanks for bringing me my artifact, you should go help the others now";
+                //Debug.Log("Thanks for bringing me my artifact, you should go help the others now");
+                state = ExitQuestState.Completed;
+            }
         }
         else
         {
