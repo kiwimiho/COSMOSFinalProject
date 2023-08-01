@@ -2557,7 +2557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633196894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.1, y: 12.7, z: 39.4}
+  m_LocalPosition: {x: -56.1, y: 26.4, z: 39.4}
   m_LocalScale: {x: 100, y: 50, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5144,6 +5144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {x: 0, y: 0, z: 0}
   deathScreen: {fileID: 291885078}
+  pModel: {fileID: 1987329508}
 --- !u!114 &1255754779
 MonoBehaviour:
   m_ObjectHideFlags: 0

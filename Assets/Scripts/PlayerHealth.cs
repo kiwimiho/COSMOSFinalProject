@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     PlayerMovement playerMov; 
     public GameObject deathScreen;
 
+    public GameObject pModel;
+    Animator rat;
+
     float knockback = 20f;
 
     //Making these public so we can watch them change in the designer
@@ -27,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         spawnPoint = transform.position;
         rigidBody = GetComponent<Rigidbody>();
         playerMov = GetComponent<PlayerMovement>();
+        rat = pModel.GetComponent<Animator>();
 
         //Fetch the PlayerClickMove component from the GameObject
 
@@ -64,6 +68,7 @@ public class PlayerHealth : MonoBehaviour
             health -= 1;
             rigidBody.AddForce(transform.forward * -knockback, ForceMode.Impulse);
             rigidBody.AddForce(transform.up * (knockback/2), ForceMode.Impulse);
+            rat.SetTrigger("hurt");
             playerMov.controlLockTimer = 2 * Time.deltaTime;
 
             //Check to see if health dropps to 0 (or lower)

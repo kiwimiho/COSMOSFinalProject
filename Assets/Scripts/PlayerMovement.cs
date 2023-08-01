@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     float speedCap = 100;
     float jumpForce = 900;      //How much force to use when the player jumps
     bool isJumping = false;     //True/false flag indicating if the player is already jumping
+    bool hasStomped = false;
     public float controlLockTimer = 0f;
     
     public GameObject pModel; 
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rigidBody.drag = 0.6f;
+            rigidBody.drag = 0.8f;
             rat.ResetTrigger("stop");
             rat.ResetTrigger("turn");
             rat.ResetTrigger("runStart");
@@ -107,6 +108,20 @@ public class PlayerMovement : MonoBehaviour
                 //Apply a force to this Rigidbody in direction of this GameObjects up axis
                 rigidBody.AddForce(transform.up * jumpForce);
             }
+            else if (!hasStomped && !IsGrounded()) //double jump
+            {
+                hasStomped = true;
+                rigidBody.AddForce(transform.up * (jumpForce*1/50), ForceMode.Impulse);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (!hasStomped && !IsGrounded()) //stompdive for jump correction and stuff
+            {
+                hasStomped = true;
+                rigidBody.AddForce(transform.forward * (moveSpeed*3/4), ForceMode.Impulse);
+                rigidBody.AddForce(transform.up * -(moveSpeed*1/3), ForceMode.Impulse);
+            }
         }
     }
 
@@ -125,5 +140,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Collision with any object lets the player jump again.
         isJumping = false;
+        hasStomped = false;
     }
 }
