@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             rigidBody.drag = 1;
+            rat.ResetTrigger("jump");
         }
         else
         {
