@@ -13,7 +13,7 @@ public class WallController : MonoBehaviour
         wall = GameObject.Find("Wall");
 
         //Calculate the wall's hidden position (current position, but subtract from the Y axis, which is below ground)
-        hiddenPosition = wall.transform.position - new Vector3(0, 50f, 0);
+        hiddenPosition = wall.transform.position - new Vector3(0, 65f, 0);
     }
 
     // Update is called once per frame
