@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5279594, g: 0.82428586, b: 0.9314351, a: 1}
+  m_IndirectSpecularColor: {r: 0.5278841, g: 0.8242898, b: 0.93135774, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1760,6 +1760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pudu_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 729780aabb3bbda4a8e4da360a0ea2f8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 790a59d5c287faa44a67a04ce02dc54c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1950,7 +1954,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d1cd35570dc600419da732416cfb76c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1775463166}
   m_SourcePrefab: {fileID: 100100000, guid: 5d1cd35570dc600419da732416cfb76c, type: 3}
 --- !u!4 &443614534 stripped
 Transform:
@@ -3128,8 +3135,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9330597, y: 0.3955555, z: 1.9717026}
-  m_Center: {x: 0.02823639, y: 0.55222225, z: -0.053035736}
+  m_Size: {x: 0.9330597, y: 0.6955555, z: 1.9717026}
+  m_Center: {x: 0.02823639, y: 0.8522223, z: -0.053035736}
 --- !u!114 &655878811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3821,6 +3828,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Taipan_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 59f05ce7e8f01db448f74d11b071a69a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2bd77caf41bb453429d4e10dd5f31e57, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6968,6 +6979,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gecko_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: a387e69fc974de148a9f773909c6c2a3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c46728df213de13409227372b1198e45, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8448,8 +8463,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9330597, y: 0.3955555, z: 1.9717026}
-  m_Center: {x: 0.02823639, y: 0.55222225, z: -0.053035736}
+  m_Size: {x: 0.9330597, y: 0.6955555, z: 1.9717026}
+  m_Center: {x: 0.02823639, y: 0.8522223, z: -0.053035736}
 --- !u!114 &1739043926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8627,6 +8642,32 @@ Transform:
   m_Father: {fileID: 1722136018}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 6.4, z: 0}
+--- !u!1 &1775463165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d1cd35570dc600419da732416cfb76c, type: 3}
+  m_PrefabInstance: {fileID: 443614533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1775463166
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775463165}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 408343f175b22af4499811678add149f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1793391818
 GameObject:
   m_ObjectHideFlags: 0
@@ -9326,6 +9367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Taipan_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 59f05ce7e8f01db448f74d11b071a69a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2bd77caf41bb453429d4e10dd5f31e57, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
