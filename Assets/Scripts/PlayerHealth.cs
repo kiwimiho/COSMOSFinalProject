@@ -75,7 +75,7 @@ public class PlayerHealth : MonoBehaviour
             //Subtract health
             health -= 1;
             rigidBody.AddForce(transform.forward * -knockback - rigidBody.velocity, ForceMode.Impulse);
-            rigidBody.AddForce(transform.up * (knockback/2) - rigidBody.velocity, ForceMode.Impulse);
+            rigidBody.AddForce(transform.up * (knockback/4) - rigidBody.velocity, ForceMode.Impulse);
             rat.SetTrigger("hurt");
             playerMov.controlLockTimer = 1 * Time.deltaTime;
 
