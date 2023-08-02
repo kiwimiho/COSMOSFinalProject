@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
             rat.ResetTrigger("runBack");
             rat.SetTrigger("jump");
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && controlLockTimer <= 0)
         {
             //W - move forward along the player's forward direction.
             //Always multiply by deltaTime when moving as Update() runs 30+ frames per sec
@@ -61,21 +61,21 @@ public class PlayerMovement : MonoBehaviour
             rat.ResetTrigger("stop");
             rat.SetTrigger("runStart");
         }   
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && controlLockTimer <= 0)
         {
             //A - turn left
             transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
             rat.ResetTrigger("stop");
             rat.SetTrigger("turn");
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && controlLockTimer <= 0)
         {
             //S - move backwards along the player's negative forward direction.
             rigidBody.AddForce(transform.forward * -moveSpeed, ForceMode.Acceleration);
             rat.ResetTrigger("stop");
             rat.SetTrigger("runBack");
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && controlLockTimer <= 0)
         {
             //D - turn right by rotating the player along the Y axis in the positive direction
             transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));

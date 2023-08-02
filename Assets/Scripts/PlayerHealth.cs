@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject pModel;
     Animator rat;
 
-    float knockback = 20f;
+    float knockback = 25f;
 
     //Making these public so we can watch them change in the designer
     public static int maxHealth = 10;                                       //Initial health of the player
@@ -74,10 +74,10 @@ public class PlayerHealth : MonoBehaviour
 
             //Subtract health
             health -= 1;
-            rigidBody.AddForce(transform.forward * -knockback, ForceMode.Impulse);
-            rigidBody.AddForce(transform.up * (knockback/2), ForceMode.Impulse);
+            rigidBody.AddForce(transform.forward * -knockback - rigidBody.velocity, ForceMode.Impulse);
+            rigidBody.AddForce(transform.up * (knockback/2) - rigidBody.velocity, ForceMode.Impulse);
             rat.SetTrigger("hurt");
-            playerMov.controlLockTimer = 3 * Time.deltaTime;
+            playerMov.controlLockTimer = 1 * Time.deltaTime;
 
             //Check to see if health dropps to 0 (or lower)
             if (health <= 0)
@@ -92,8 +92,8 @@ public class PlayerHealth : MonoBehaviour
 
             //Subtract health
             health -= 1;
-            rigidBody.AddForce(transform.forward * -knockback*(3/2), ForceMode.Impulse);
-            rigidBody.AddForce(transform.up * (knockback), ForceMode.Impulse);
+            rigidBody.AddForce(transform.forward * -knockback*(3/2) - rigidBody.velocity, ForceMode.Impulse);
+            rigidBody.AddForce(transform.up * (knockback) - rigidBody.velocity, ForceMode.Impulse);
             rat.SetTrigger("hurt");
             playerMov.controlLockTimer = 3 * Time.deltaTime;
 
