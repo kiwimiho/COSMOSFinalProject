@@ -103,6 +103,10 @@ public class PlayerHealth : MonoBehaviour
                 deathScreen.SetActive(true);
             }
         }
+        if (collision.gameObject.tag == "Terrain")
+        {
+            deathScreen.SetActive(true);
+        }
     }
 
     public void Respawn()

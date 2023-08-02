@@ -5,6 +5,8 @@ using UnityEngine;
 public class StartButtonGUI : MonoBehaviour
 {
     public GameObject startScreen;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,6 @@ public class StartButtonGUI : MonoBehaviour
     public void StartButton()
     {
         startScreen.SetActive(false);
+        audioSource.PlayOneShot(audioClip, 1.0f);
     }
 }

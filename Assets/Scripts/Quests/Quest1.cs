@@ -11,6 +11,9 @@ public class Quest1 : MonoBehaviour
     public TMP_Text dialogueText;
     public GameObject dialoguePanel;
     public TMP_Text nameText;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public AudioClip audioClip2;
 
     public bool haveItem = false;                           //picked up?                     
     public ExitQuestState state = ExitQuestState.None;      //Current state
@@ -78,6 +81,7 @@ public class Quest1 : MonoBehaviour
     public void NoneExitQuest()
     {
         dialoguePanel.SetActive(true);
+        audioSource.PlayOneShot(audioClip, 1.0f);
         nameText.text = "Geckert";
         dialogueText.text = "Hello, traveler. I have been made weak by the nefarious Colo, who has stolen my artifact. Help me get it back so we can defeat him!";
         // Debug.Log("help me get my artifact over there.");
@@ -90,12 +94,14 @@ public class Quest1 : MonoBehaviour
         if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
         {
             dialoguePanel.SetActive(true);
+            audioSource.PlayOneShot(audioClip, 1.0f);
             nameText.text = "Geckert";
             dialogueText.text = "Thanks for returning all our artifacts! We have brought down the wall for you.";
         }
         else
         {
             dialoguePanel.SetActive(true);
+            audioSource.PlayOneShot(audioClip, 1.0f);
             nameText.text = "Geckert";
             dialogueText.text = "You already brought me my artifact. You should go help the others.";
             // Debug.Log("You already brought me my artifact you should go help the others");
@@ -112,12 +118,14 @@ public class Quest1 : MonoBehaviour
             if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
             {
                 dialoguePanel.SetActive(true);
+                audioSource.PlayOneShot(audioClip, 1.0f);
                 nameText.text = "Geckert";
                 dialogueText.text = "Thanks for bringing me my artifact! We have gained enough power to lower the wall for you. Get that Colo!";
             }
             else
             {
                 dialoguePanel.SetActive(true);
+                audioSource.PlayOneShot(audioClip, 1.0f);
                 nameText.text = "Geckert";
                 dialogueText.text = "Thanks for bringing me my artifact! You should go help the others now.";
                 //Debug.Log("Thanks for bringing me my artifact, you should go help the others now");
@@ -128,6 +136,7 @@ public class Quest1 : MonoBehaviour
         {
             //Nope, remind player what's going on
             dialoguePanel.SetActive(true);
+            audioSource.PlayOneShot(audioClip, 1.0f);
             nameText.text = "Geckert";
             dialogueText.text = "My artifact is on the circular path of floating islands. Please bring it to me.";
             //Debug.Log("My artifact is over there, please bring it to me");
@@ -146,6 +155,7 @@ public class Quest1 : MonoBehaviour
             {
                 //Yes, pick up block
                 dialoguePanel.SetActive(true);
+                audioSource.PlayOneShot(audioClip2, 1.0f);
                 nameText.text = "";
                 dialogueText.text = "You got Geckert's artifact!";
                 //Debug.Log("You got a artifact");
@@ -160,6 +170,7 @@ public class Quest1 : MonoBehaviour
             {
                 //Nope, remind player (we could do nothing here also)
                 dialoguePanel.SetActive(true);
+                audioSource.PlayOneShot(audioClip, 1.0f);
                 nameText.text = "";
                 dialogueText.text = "We're looking for a green artifact.";
                 //Debug.Log("We're looking for an artifact");

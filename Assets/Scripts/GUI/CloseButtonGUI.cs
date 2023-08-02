@@ -5,6 +5,9 @@ using UnityEngine;
 public class CloseButtonGUI : MonoBehaviour
 {
     public GameObject dialoguePanel;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +23,6 @@ public class CloseButtonGUI : MonoBehaviour
     public void CloseButton()
     {
         dialoguePanel.SetActive(false);
+        audioSource.PlayOneShot(audioClip, 1.0f);
     }
 }
