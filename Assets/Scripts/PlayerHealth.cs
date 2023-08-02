@@ -51,6 +51,16 @@ public class PlayerHealth : MonoBehaviour
             Destroy(other.gameObject);
             rigidBody.AddForce(transform.up * knockback, ForceMode.Impulse);
         }
+        if (other.gameObject.tag == "Boss" && playerMov.controlLockTimer <= 0)
+        {
+            Boss.health -= 1;
+            rigidBody.AddForce(transform.forward * -knockback, ForceMode.Impulse);
+            rigidBody.AddForce(transform.up * (knockback*(3/4)), ForceMode.Impulse);
+            if (Boss.health == 0)
+            {
+                Destroy(other.gameObject);
+            }
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -67,7 +77,25 @@ public class PlayerHealth : MonoBehaviour
             rigidBody.AddForce(transform.forward * -knockback, ForceMode.Impulse);
             rigidBody.AddForce(transform.up * (knockback/2), ForceMode.Impulse);
             rat.SetTrigger("hurt");
-            playerMov.controlLockTimer = 2 * Time.deltaTime;
+            playerMov.controlLockTimer = 3 * Time.deltaTime;
+
+            //Check to see if health dropps to 0 (or lower)
+            if (health <= 0)
+            {
+                deathScreen.SetActive(true);
+            }
+        }
+        if (collision.gameObject.tag == "Boss")
+        {
+            //Remove the bullet that just hit the player
+            // Destroy(collision.gameObject);
+
+            //Subtract health
+            health -= 1;
+            rigidBody.AddForce(transform.forward * -knockback*(3/2), ForceMode.Impulse);
+            rigidBody.AddForce(transform.up * (knockback), ForceMode.Impulse);
+            rat.SetTrigger("hurt");
+            playerMov.controlLockTimer = 3 * Time.deltaTime;
 
             //Check to see if health dropps to 0 (or lower)
             if (health <= 0)
