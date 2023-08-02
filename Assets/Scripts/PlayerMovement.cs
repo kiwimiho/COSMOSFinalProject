@@ -138,8 +138,11 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Player wins!!");
         }
 
-        //Collision with any object lets the player jump again.
-        isJumping = false;
-        hasStomped = false;
+        //Collision with any object lets the player jump again. (nuh uh only with the ground)
+        if (IsGrounded())
+        {
+            isJumping = false;
+            hasStomped = false;
+        }
     }
 }
