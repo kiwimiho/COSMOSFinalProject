@@ -56,10 +56,10 @@ public class PlayerHealth : MonoBehaviour
             Boss.health -= 1;
             rigidBody.AddForce(transform.forward * -knockback, ForceMode.Impulse);
             rigidBody.AddForce(transform.up * (knockback*(3/4)), ForceMode.Impulse);
-            if (Boss.health == 0)
-            {
-                Destroy(other.gameObject);
-            }
+            // if (Boss.health == 0)
+            // {
+            //     Destroy(other.gameObject);
+            // }
         }
     }
     private void OnCollisionEnter(Collision collision)

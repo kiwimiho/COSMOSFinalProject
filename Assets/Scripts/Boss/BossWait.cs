@@ -27,12 +27,14 @@ public class BossWait : State
 
         if(player != null)
         {
+            enemy.bossHealthPanel.SetActive(true);
             sc.AddNewState(new BossAttack());
         }
 
         GameObject shootPlayer = sc.FindClosestTarget("Player", enemy.shootRange);
         if (shootPlayer != null)
         {
+            enemy.bossHealthPanel.SetActive(true);
             sc.AddNewState(new BossShoot());
         }
     }
