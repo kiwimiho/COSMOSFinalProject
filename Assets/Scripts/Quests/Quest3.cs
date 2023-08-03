@@ -32,6 +32,7 @@ public class Quest3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        completed3 = false;
         //Set current state to None (not assigned)
         state = ExitQuestState.None;
         haveItem = false;
