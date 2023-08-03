@@ -118,7 +118,7 @@ public class Quest1 : MonoBehaviour
             if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
             {
                 dialoguePanel.SetActive(true);
-                audioSource.PlayOneShot(audioClip, 1.0f);
+                audioSource.PlayOneShot(audioClip2, 1.0f);
                 nameText.text = "Geckert";
                 dialogueText.text = "Thanks for bringing me my artifact! We have gained enough power to lower the wall for you. Get that Colo!";
             }

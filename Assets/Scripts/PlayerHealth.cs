@@ -9,6 +9,11 @@ public class PlayerHealth : MonoBehaviour
     Rigidbody rigidBody;
     PlayerMovement playerMov; 
     public GameObject deathScreen;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public AudioClip audioClip2;
+    public AudioClip audioClip3;
+    public AudioClip audioClip4;
 
     public GameObject pModel;
     Animator rat;
@@ -49,17 +54,21 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && playerMov.controlLockTimer <= 0)
         {
             Destroy(other.gameObject);
+            audioSource.PlayOneShot(audioClip2, 1.0f);
             rigidBody.AddForce(transform.up * knockback, ForceMode.Impulse);
         }
         if (other.gameObject.tag == "Boss" && playerMov.controlLockTimer <= 0)
         {
             Boss.health -= 1;
             rigidBody.AddForce(transform.forward * -knockback, ForceMode.Impulse);
+            audioSource.PlayOneShot(audioClip2, 1.0f);
             rigidBody.AddForce(transform.up * (knockback*(3/4)), ForceMode.Impulse);
-            // if (Boss.health == 0)
-            // {
+            if (Boss.health == 0)
+            {
             //     Destroy(other.gameObject);
-            // }
+                audioSource.PlayOneShot(audioClip4, 1.0f);
+                rigidBody.constraints = RigidbodyConstraints.FreezePosition; //don't die after win
+            }
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -78,11 +87,13 @@ public class PlayerHealth : MonoBehaviour
             rigidBody.AddForce(transform.up * (knockback/4) - rigidBody.velocity, ForceMode.Impulse);
             rat.SetTrigger("hurt");
             playerMov.controlLockTimer = 1 * Time.deltaTime;
+            audioSource.PlayOneShot(audioClip, 1.0f);
 
             //Check to see if health dropps to 0 (or lower)
             if (health <= 0)
             {
                 deathScreen.SetActive(true);
+                audioSource.PlayOneShot(audioClip3, 1.0f);
             }
         }
         if (collision.gameObject.tag == "Boss")
@@ -96,16 +107,19 @@ public class PlayerHealth : MonoBehaviour
             rigidBody.AddForce(transform.up * (knockback) - rigidBody.velocity, ForceMode.Impulse);
             rat.SetTrigger("hurt");
             playerMov.controlLockTimer = 3 * Time.deltaTime;
+            audioSource.PlayOneShot(audioClip, 1.0f);
 
             //Check to see if health dropps to 0 (or lower)
             if (health <= 0)
             {
                 deathScreen.SetActive(true);
+                audioSource.PlayOneShot(audioClip3, 1.0f);
             }
         }
         if (collision.gameObject.tag == "Terrain")
         {
             deathScreen.SetActive(true);
+            audioSource.PlayOneShot(audioClip3, 1.0f);
         }
     }
 

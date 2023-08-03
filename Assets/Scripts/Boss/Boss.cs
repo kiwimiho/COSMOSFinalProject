@@ -32,6 +32,7 @@ public class Boss : MonoBehaviour
         // tmpText = dialoguePanel.GetComponentInChildren<TMP_Text>();
         // Debug.Log("This is tmpText inside dialogue " + tmpText);
         controller = GetComponent<StateController>();
+        health = 5;
         controller.ChangeState(new BossThink());
     }
 
@@ -42,6 +43,7 @@ public class Boss : MonoBehaviour
         {
             bossHealthPanel.SetActive(false);
             winScreen.SetActive(true);
+
         }
 
         bossHealthText.text = "Boss Health: " + health;

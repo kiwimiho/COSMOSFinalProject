@@ -13,9 +13,12 @@ public class PlayerMovement : MonoBehaviour
     float distToGround;
     float speedCap = 100;
     float jumpForce = 900;      //How much force to use when the player jumps
-    bool isJumping = false;     //True/false flag indicating if the player is already jumping
+   // bool isJumping = false;     //True/false flag indicating if the player is already jumping
     bool hasStomped = false;
     public float controlLockTimer = 0f;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public AudioClip audioClip2;
     
     public GameObject pModel; 
 
@@ -42,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             rigidBody.drag = 1;
-            rat.ResetTrigger("jump");
+            rat.SetBool("jump", false);
         }
         else
         {
@@ -51,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             rat.ResetTrigger("turn");
             rat.ResetTrigger("runStart");
             rat.ResetTrigger("runBack");
-            rat.SetTrigger("jump");
+            rat.SetBool("jump", true);
         }
         if (Input.GetKey(KeyCode.W) && controlLockTimer <= 0)
         {
@@ -100,18 +103,20 @@ public class PlayerMovement : MonoBehaviour
             //It can be helpful when testing to print out debug statements to the Console window.
 
             //No double jumps, don't allow jumping if already jumping
-            if (!isJumping && IsGrounded())
+            if (IsGrounded())
             {
                 //Set the jumping flag to prevent double jumps
-                isJumping = true;
+                //isJumping = true; got rid of this because it was causing weird bugs
 
                 //Apply a force to this Rigidbody in direction of this GameObjects up axis
                 rigidBody.AddForce(transform.up * jumpForce);
+                audioSource.PlayOneShot(audioClip, 1.0f);
             }
             else if (!hasStomped && !IsGrounded()) //double jump
             {
                 hasStomped = true;
                 rigidBody.AddForce(transform.up * (jumpForce*1/60) - rigidBody.velocity, ForceMode.VelocityChange);
+                audioSource.PlayOneShot(audioClip2, 1.0f);
             }
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -121,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
                 hasStomped = true;
                 rigidBody.AddForce(transform.forward * (moveSpeed*3/4), ForceMode.Impulse);
                 rigidBody.AddForce(transform.up * -(moveSpeed*1/3), ForceMode.Impulse);
+                audioSource.PlayOneShot(audioClip2, 1.0f);
             }
         }
     }
@@ -141,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         //Collision with any object lets the player jump again. (nuh uh only with the ground)
         if (IsGrounded())
         {
-            isJumping = false;
+            //isJumping = false;
             hasStomped = false;
         }
     }

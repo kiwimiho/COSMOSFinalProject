@@ -11,6 +11,9 @@ public class Quest2 : MonoBehaviour
     public TMP_Text dialogueText;
     public GameObject dialoguePanel;
     public TMP_Text nameText;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public AudioClip audioClip2;
 
     public bool haveItem = false;                           //picked up?                     
     public ExitQuestState state = ExitQuestState.None;      //Current state
@@ -78,6 +81,7 @@ public class Quest2 : MonoBehaviour
     public void NoneExitQuest()
     {
         dialoguePanel.SetActive(true);
+        audioSource.PlayOneShot(audioClip, 1.0f);
         nameText.text = "Pudeen";
         dialogueText.text = "Hello there! Colo seems to have taken our power for a mysterious plan... We cannot let him win! Please help me retrieve my artifact.";
         // Debug.Log("help me get my artifact over there.");
@@ -90,12 +94,14 @@ public class Quest2 : MonoBehaviour
         if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
         {
             dialoguePanel.SetActive(true);
+            audioSource.PlayOneShot(audioClip, 1.0f);
             nameText.text = "Pudeen";
             dialogueText.text = "Thanks for returning all our artifacts! We have brought down the wall for you.";
         }
         else
         {
             dialoguePanel.SetActive(true);
+            audioSource.PlayOneShot(audioClip, 1.0f);
             nameText.text = "Pudeen";
             dialogueText.text = "You already brought me my artifact, young traveler. You should help the others.";
             // Debug.Log("You already brought me my artifact you should go help the others");
@@ -112,12 +118,14 @@ public class Quest2 : MonoBehaviour
             if(Quest1.completed1 && Quest2.completed2 && Quest3.completed3)
             {
                 dialoguePanel.SetActive(true);
+                audioSource.PlayOneShot(audioClip2, 1.0f);
                 nameText.text = "Pudeen";
                 dialogueText.text = "Thanks for bringing me my artifact! We have lowered the wall for you. Please go talk to Colo about this.";
             }
             else
             {
                 dialoguePanel.SetActive(true);
+                audioSource.PlayOneShot(audioClip, 1.0f);
                 nameText.text = "Pudeen";
                 dialogueText.text = "Thank you for retrieving my artifact. Please help the others.";
                 //Debug.Log("Thanks for bringing me my artifact, you should go help the others now");
@@ -128,6 +136,7 @@ public class Quest2 : MonoBehaviour
         {
             //Nope, remind player what's going on
             dialoguePanel.SetActive(true);
+            audioSource.PlayOneShot(audioClip, 1.0f);
             nameText.text = "Pudeen";
             dialogueText.text = "My artifact is on the floating stone islands. Please bring it to me.";
             //Debug.Log("My artifact is over there, please bring it to me");
@@ -146,6 +155,7 @@ public class Quest2 : MonoBehaviour
             {
                 //Yes, pick up block
                 dialoguePanel.SetActive(true);
+                audioSource.PlayOneShot(audioClip2, 1.0f);
                 nameText.text = "";
                 dialogueText.text = "You got Pudeen's artifact!";
                 //Debug.Log("You got a artifact");
@@ -160,6 +170,7 @@ public class Quest2 : MonoBehaviour
             {
                 //Nope, remind player (we could do nothing here also)
                 dialoguePanel.SetActive(true);
+                audioSource.PlayOneShot(audioClip, 1.0f);
                 nameText.text = "";
                 dialogueText.text = "We're looking for a dark brown artifact.";
                 //Debug.Log("We're looking for an artifact");
